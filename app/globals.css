@@ -1,0 +1,243 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #6366f1;
+  --color-secondary: #ec4899;
+  --color-accent: #06b6d4;
+  --color-dark: #0f172a;
+  --color-light: #f8fafc;
+  
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-display: var(--font-sans), sans-serif;
+}
+
+:root {
+  /* Dynamic CSS Custom Variables - Dark Theme (Default) */
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --text-color-rgb: 248, 250, 252;
+  --border-color: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(15, 23, 42, 0.65);
+  --glass-hover-bg: rgba(15, 23, 42, 0.85);
+  --text-mute: rgba(248, 250, 252, 0.5);
+  --grid-line-color: rgba(99, 102, 241, 0.05);
+  --accent-color: #06b6d4;
+  --primary-color: #6366f1;
+  
+  /* Mesh variables */
+  --mesh-opacity: 0.85;
+  --mesh-bg-1: rgba(99, 102, 241, 0.15);
+  --mesh-bg-2: rgba(236, 72, 153, 0.15);
+  --mesh-bg-3: rgba(6, 182, 212, 0.15);
+  
+  /* Cursor variables */
+  --cursor-follower-border: #f8fafc;
+  --cursor-dot-bg: #f8fafc;
+  
+  /* Spacers & Fonts (Fluid clamp variables) */
+  --fs-hero: clamp(2.5rem, 6vw + 1rem, 7rem);
+  --fs-h1: clamp(2rem, 4vw + 1rem, 4.5rem);
+  --fs-h2: clamp(1.75rem, 3vw + 1rem, 3rem);
+  --fs-h3: clamp(1.25rem, 2vw + 1rem, 2rem);
+  --fs-body: clamp(0.95rem, 0.2vw + 0.9rem, 1.15rem);
+  
+  /* Fluid Spacing tokens matching modern guidelines */
+  --space-xs: clamp(0.5rem, 1vw, 0.75rem);
+  --space-sm: clamp(0.75rem, 1.5vw, 1.25rem);
+  --space-md: clamp(1.25rem, 2.5vw, 2.25rem);
+  --space-lg: clamp(2rem, 4vw, 3.5rem);
+  --space-xl: clamp(4.5rem, 8vw + 1rem, 7.5rem); /* Section vertical padding */
+  
+  --container-max-width: 1280px;
+  --shadow-premium: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="light"] {
+  /* Dynamic CSS Custom Variables - Light Theme */
+  --bg-color: #f8fafc;
+  --text-color: #0f172a;
+  --text-color-rgb: 15, 23, 42;
+  --border-color: rgba(15, 23, 42, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-hover-bg: rgba(255, 255, 255, 0.95);
+  --text-mute: rgba(15, 23, 42, 0.55);
+  --grid-line-color: rgba(99, 102, 241, 0.04);
+  --accent-color: #0891b2;
+  --primary-color: #4f46e5;
+  
+  /* Mesh variables */
+  --mesh-opacity: 0.65;
+  --mesh-bg-1: rgba(99, 102, 241, 0.08);
+  --mesh-bg-2: rgba(236, 72, 153, 0.08);
+  --mesh-bg-3: rgba(6, 182, 212, 0.08);
+  
+  /* Cursor variables */
+  --cursor-follower-border: #0f172a;
+  --cursor-dot-bg: #0f172a;
+  
+  --shadow-premium: 0 20px 40px rgba(99, 102, 241, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+              opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-mute);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Modern Typography Helpers */
+h1, .font-hero {
+  font-size: var(--fs-hero);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+/* Unified Spacing Classes */
+.section-padding {
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.container-padding {
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.card-padding {
+  padding: var(--space-md);
+}
+
+.max-layout-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Dynamic Mesh Gradient Animation */
+.mesh-gradient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 10% 20%, var(--mesh-bg-1) 0px, transparent 50%),
+    radial-gradient(at 90% 10%, var(--mesh-bg-2) 0px, transparent 50%),
+    radial-gradient(at 50% 80%, var(--mesh-bg-3) 0px, transparent 50%);
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: var(--mesh-opacity);
+}
+
+/* Hide native cursor for custom cursor experience */
+@media (pointer: fine) {
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s ease;
+}
+.glass-panel-hover:hover {
+  background: var(--glass-hover-bg);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.15);
+}
+
+/* Selection aesthetics */
+::selection {
+  background: rgba(99, 102, 241, 0.25);
+  color: var(--text-color);
+}
+
+/* Custom performance helpers */
+.will-change-transform {
+  will-change: transform;
+}
+.will-change-opacity {
+  will-change: opacity;
+}
+.will-change-transform-opacity {
+  will-change: transform, opacity;
+}
+
+/* Marquee infinite scrolling animation container */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  width: 100%;
+}
+
+.marquee-content {
+  display: flex;
+  flex-shrink: 0;
+  min-width: 100%;
+  justify-content: space-around;
+  align-items: center;
+}
